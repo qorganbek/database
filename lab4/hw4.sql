@@ -31,8 +31,8 @@ where title like '%e' or title like '%a' or title like '%u' or title like '%i' o
 
 --g
 
-select * from course
-where course_id = 'EE-181';
+-- select * from course
+-- where course_id = 'EE-181';
 
 select prereq_id from course
 join prereq p on course.course_id = p.course_id
@@ -40,7 +40,13 @@ where p.course_id = 'EE-181';
 
 --ex 2
 --a
-select * from instructor
-full join department d on instructor.dept_name = d.dept_name;
+
+
+--b
+
+
+
+
+
 
 
