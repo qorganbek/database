@@ -42,7 +42,6 @@ where p.course_id = 'EE-181';
 --a
 select avg(salary),dept_name from instructor
 group by dept_name order by avg(salary) ASC;
-
 --b
 
 
