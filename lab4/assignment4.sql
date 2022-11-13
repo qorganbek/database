@@ -2,17 +2,18 @@
 --a
 select title from course where dept_name='Biology' and credits>3;
 --b
-select * from classroom where building='Watson' or building='Painter';
+select * from classroom where building='Watson' or building='Painter'
 --c
 select * from course where dept_name='Comp. Sci.';
 --d
 select * from course where course_id in(select course_id from section where semester='Spring');
+select * from course where course_id in (select course_id from section where  semester = 'Fall');
 --e
 select * from student where tot_cred>45 and tot_cred<85;
 --f
 select *
 from course
-where right(title,1) in ('a', 'e', 'i', 'o', 'u','y');
+where right(title,1) in ('a', 'e', 'i', 'o', 'u','y');;
 
 --g
 select * from course where course_id in(select course_id from prereq where prereq_id='EE-181');
@@ -26,6 +27,19 @@ order by avg(salary);
 --b
     select building ,count(course_id) as count from section group by building
     having count(course_id) in(select  max(res) from (select count(course_id) as res from section group by building)as foo);
+
+
+
+
+
+
+
+
+select building,count(course_id) as count from section group by building
+having count(course_id) in (select max(res) from (select count(course_id) as res from section group by building) as foo)
+
+
+
 
     --c
     select dept_name, count(course_id) as count from course group by dept_name
@@ -41,7 +55,7 @@ order by avg(salary);
     select id,name from instructor where dept_name in(select dept_name from department where building ='Taylor');
     --f
     select * from instructor where dept_name='Biology' or dept_name='Music' or dept_name='Philosophy';
-    --g
+    --g-
     select * from instructor where id in (
     select id from teaches where year='2018'
     intersect
@@ -49,11 +63,22 @@ order by avg(salary);
     from teaches
     group by id
     having count(year)=1);
+    --------+
+    select  name from instructor
+    where id in (select  id from teaches
+    where year = 2018 except select id from teaches where year = 2017);
+
+
+
 
     --3task
     --a
     select distinct s.id,name,s.dept_name,tot_cred from takes join course c on takes.course_id = c.course_id join student s on takes.id = s.id
             where c.dept_name='Comp. Sci.' and (grade='A' or grade='A-') order by name;
+
+----+
+    select *  from student, course,takes where takes.course_id = course.course_id and student.id = takes.id
+    and (takes.grade = 'A' or takes.grade = 'A-')  and course.dept_name = 'Comp. Sci.'  order by student.name;
     --b
     select distinct s_id,i_id from advisor join student s on s.id = advisor.s_id where id in (
     select id from takes where grade='B+' or grade='A-' or grade='A' or grade='A+'

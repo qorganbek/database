@@ -47,6 +47,11 @@ group by dept_name order by avg(salary) ASC;
 select building ,count(course_id) as count from section group by building
 having count(course_id) in(select  max(res) from (select count(course_id) as res from section group by building)as foo);
 
+
+select building, count (building) as
+
+
+
 --c
 select dept_name, count(course_id) as count from course group by dept_name
 having count(course_id) in (select min(res) from (select count(course_id) as res from course group by dept_name) as foo);
