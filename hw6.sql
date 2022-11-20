@@ -26,4 +26,43 @@ create table if not exists employees(
     salary integer,
     department_id integer references departments
 );
+--3
+insert into locations values(1, 'Tole bi 59', '050000', 'Almaty', 'South');
+insert into locations values(2, '3211 Hillcrest Lane', '92380', 'Quail Valley', 'California');
+insert into locations values(3, 'Pfaffacherweg 105', '5107','Schinznach-dorf','Brugg');
+insert into locations values(4, 'Civic Centre, High Rd', 'N22 8LE', 'London', '	Wood Green');
+insert into locations values(5, 'Merter', '34173', 'Güngören', 'Istanbul');
+insert into departments values (30, 'Administration', 55000000,'Almaty', 1);
+insert into departments values (50, 'Marketing', 1000000,'Quail Valley', 2);
+insert into departments values (60, 'Purchasing', 12000000,'Schinznach-dorf', 3);
+insert into departments values (70, 'Finance', 9000000,'Güngören', 5);
+insert into departments values (80, 'IT', 990000000,'London', 4);
+insert into employees values (1,'Dinmukhammed','Korganbek','dim03kz3@gmail.com','87785747318',12000000,80);
+insert into employees values (2,'Aidos','Kakimov','aidos_obzor@gmail.com','87757321256',10000,30);
+insert into employees values (3,'Temirzhan','Timur','timur@gmail.com','87775747318',110000,50);
+insert into employees values (4,'Zhanserik','Kalmukhambet','zhans@gmail.com','87785747318',90000,70);
+insert into employees values (5,'Tugelbay','Ansar','ansar@gmail.com','87475747318',30000,60);
+--4
+select first_name,last_name,e.department_id,department_name from departments
+join employees e on departments.department_id = e.department_id;
 
+--5
+select first_name,last_name,e.department_id,department_name from departments
+join employees e on departments.department_id = e.department_id
+where e.department_id = 80 or e.department_id = 30;
+
+--6
+select first_name,last_name,department_name,d.city,state_province from employees
+join departments d on employees.department_id = d.department_id
+join locations l on l.location_id = d.location_id;
+
+--7
+
+
+--8
+
+
+--9
+select first_name,last_name from employees
+join departments d on d.department_id = employees.department_id
+where city = 'Almaty';

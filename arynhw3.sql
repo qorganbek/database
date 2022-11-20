@@ -1,5 +1,8 @@
 
+--1
+--create database assignment_6;
 
+--2
 create table employees(
     emp_no INT primary key,
     birth_date date,
@@ -37,3 +40,4 @@ create table titles(
     to_date date,
     primary key (emp_no,title,from_date)
 );
+
