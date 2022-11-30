@@ -57,12 +57,17 @@ join departments d on employees.department_id = d.department_id
 join locations l on l.location_id = d.location_id;
 
 --7
-
+insert into departments values (90,'Medicine',150000,'Almaty',1);
+select * from departments;
 
 --8
-
+insert into employees  values (6,'Ernat','Manapaly','era@mail.ru','87757451265',null,6);
+insert into locations values (6,'Krasyi Fonorei','10532','Moscow','Moscow');
+select employees.first_name,employees.last_name,employees.department_id,d.department_name from employees
+full outer join departments d on d.department_id = employees.department_id;
 
 --9
+
 select first_name,last_name from employees
 join departments d on d.department_id = employees.department_id
 where city = 'Almaty';
