@@ -52,7 +52,7 @@ join employees e on departments.department_id = e.department_id
 where e.department_id = 80 or e.department_id = 30;
 
 --6
-select first_name,last_name,department_name,d.city,state_province from employees
+select first_name,last_name,department_name,d.city,state_province, d.location_id from employees
 join departments d on employees.department_id = d.department_id
 join locations l on l.location_id = d.location_id;
 
